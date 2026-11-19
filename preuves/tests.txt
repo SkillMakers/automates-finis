@@ -1,0 +1,61 @@
+== Python 3.15.1
+test_deux_classes_ne_portent_jamais_le_meme_nom (test_automates.TestCasLimites.test_deux_classes_ne_portent_jamais_le_meme_nom)
+Etats 0, 1, 3, 13 : 1 et 3 fusionnent, 13 reste seul ; les deux classes gardent des noms differents. ... ok
+test_deux_etats_qui_s_affichent_pareil (test_automates.TestCasLimites.test_deux_etats_qui_s_affichent_pareil)
+Les etats 1 et '1' sont refuses : leurs ensembles s'ecriraient de la meme facon. ... ok
+test_difference_entre_alphabets_differents (test_automates.TestCasLimites.test_difference_entre_alphabets_differents)
+a etoile (alphabet {a}) contre un automate sur {a, b} : on compare quand meme : meme langage. ... ok
+test_le_puits_prend_un_nom_libre (test_automates.TestCasLimites.test_le_puits_prend_un_nom_libre)
+Un etat s'appelle deja P : le puits s'appelle P'. ... ok
+test_long_mot_sans_recursion (test_automates.TestCasLimites.test_long_mot_sans_recursion)
+Une concatenation de 1 500 lettres ne depasse pas la limite de recursion de Python. ... ok
+test_mot_vide_dans_une_expression (test_automates.TestCasLimites.test_mot_vide_dans_une_expression)
+a suivi de epsilon etoile ne reconnait que a, et le juge re est d'accord. ... ok
+test_priorite_de_l_union (test_automates.TestCasLimites.test_priorite_de_l_union)
+a+bc se lit a ou bc, pas (a ou b) puis c. ... ok
+test_complementaire (test_automates.TestContreJuges.test_complementaire)
+300 automates : le complementaire accepte exactement les mots que l'automate refuse. ... ok
+test_determinisation_garde_le_langage (test_automates.TestContreJuges.test_determinisation_garde_le_langage)
+300 automates au hasard : le determinise est deterministe, complet, et accepte les memes mots. ... ok
+test_difference_trouve_le_plus_court_mot (test_automates.TestContreJuges.test_difference_trouve_le_plus_court_mot)
+Contient aba contre contient ab : le plus court mot qui les separe est ab. ... ok
+test_minimisation_est_minimale (test_automates.TestContreJuges.test_minimisation_est_minimale)
+Automates au hasard : Moore garde le langage, et donne autant d'etats que de comportements differents. ... ok
+test_thompson_contre_le_module_re (test_automates.TestContreJuges.test_thompson_contre_le_module_re)
+300 expressions au hasard : l'automate de Thompson accepte les memes mots que re.fullmatch. ... ok
+test_determinisation_du_cours (test_automates.TestCours.test_determinisation_du_cours)
+{0}, {0,1}, {0,2} : trois etats, seul {0,2} est final, et aucun ensemble vide. ... ok
+test_explosion (test_automates.TestCours.test_explosion)
+k + 1 etats non deterministes donnent 2 puissance k etats, et Moore n'en enleve aucun. ... ok
+test_finit_par_ab_non_deterministe (test_automates.TestCours.test_finit_par_ab_non_deterministe)
+Apres a, on peut etre en 0 ou en 1 : l'automate n'est ni deterministe ni complet. ... ok
+test_moore_sur_quatre_etats (test_automates.TestCours.test_moore_sur_quatre_etats)
+1 et 3 se confondent, 2 et 4 aussi : la partition de depart ne bouge plus. ... ok
+test_nombre_pair_de_a (test_automates.TestCours.test_nombre_pair_de_a)
+abba (2 a) et aba (2 a) sont acceptes, ab (1 a) est refuse. ... ok
+test_thompson_du_cours (test_automates.TestCours.test_thompson_du_cours)
+Thompson sur a(a+b)*b : 12 etats et 10 epsilon-transitions, meme langage que l'automate a 3 etats. ... ok
+test_expression_mal_formee (test_automates.TestErreurs.test_expression_mal_formee)
+Parenthese non fermee, union sans second morceau, etoile en tete, expression vide : erreur. ... ok
+test_moore_refuse_un_non_deterministe (test_automates.TestErreurs.test_moore_refuse_un_non_deterministe)
+Moore sur un automate non deterministe : erreur, il faut determiniser d'abord. ... ok
+test_exercice_1 (test_automates.TestExercices.test_exercice_1)
+Contient aba : 6 ensembles, dans l'ordre de la copie, dont 3 finaux. ... ok
+test_exercice_2 (test_automates.TestExercices.test_exercice_2)
+Moore : finaux / non finaux, puis {0,2} se detache, puis {0} et {0,1} : 4 etats. ... ok
+test_exercice_3 (test_automates.TestExercices.test_exercice_3)
+a(a+b)*b : {0}, {1}, l'ensemble vide (puits), {1,2} ; memes mots que le module re. ... ok
+test_exercice_4_le_piege (test_automates.TestExercices.test_exercice_4_le_piege)
+Inverser les finaux sans determiniser accepte ab ; sans puits, refuse b ; la bonne methode est juste. ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 6.095s
+
+OK
+
+== Python 3.11
+........................
+----------------------------------------------------------------------
+Ran 24 tests in 7.014s
+
+OK

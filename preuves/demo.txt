@@ -1,0 +1,133 @@
+Python 3.15.1
+
+==============================================================================
+COURS 1 - automate deterministe : nombre pair de a
+==============================================================================
+       a  b
+->* P  I  P
+    I  P  I
+lecture de abba : P -> I -> I -> I -> P | accepte : True
+lecture de aba  : accepte : True
+
+==============================================================================
+COURS 2 - automate non deterministe : finit par ab
+==============================================================================
+       a     b
+->  0  0, 1  0
+    1  -     2
+  * 2  -     -
+deterministe : False | complet : False
+apres 'le mot vide' : etats possibles [0]
+apres 'a'    : etats possibles [0, 1]
+apres 'aa'   : etats possibles [0, 1]
+apres 'aab'  : etats possibles [0, 2]
+aab accepte : True | aba accepte : False
+
+==============================================================================
+COURS 3 - determinisation de finit par ab
+==============================================================================
+           a      b
+->  {0}    {0,1}  {0}
+    {0,1}  {0,1}  {0,2}
+  * {0,2}  {0,1}  {0}
+meme langage : True
+
+==============================================================================
+COURS 4 - l'explosion : la k-ieme lettre avant la fin est un a
+==============================================================================
+ k   etats non det.   etats det.   etats minimaux   temps
+ 1            2            2                2    0.000 s
+ 2            3            4                4    0.000 s
+ 3            4            8                8    0.000 s
+ 4            5           16               16    0.000 s
+ 5            6           32               32    0.001 s
+ 6            7           64               64    0.002 s
+ 7            8          128              128    0.004 s
+ 8            9          256              256    0.008 s
+ 9           10          512              512    0.018 s
+10           11         1024             1024    0.040 s
+11           12         2048             2048    0.090 s
+12           13         4096             4096    0.177 s
+
+==============================================================================
+COURS 5 - Moore sur nombre pair de a, ecrit avec 4 etats
+==============================================================================
+       a  b
+->* 1  2  3
+    2  3  4
+  * 3  4  1
+    4  1  2
+  etape 0 : {1 3} | {2 4}
+         a    b
+->* 1=3  2=4  1=3
+    2=4  1=3  2=4
+meme langage que l'automate a 2 etats : True
+
+==============================================================================
+COURS 6 - Thompson sur a(a+b)*b
+==============================================================================
+12 etats, 10 epsilon-transitions
+meme langage que l'automate a la main : True
+
+==============================================================================
+EXERCICE 1 - determiniser contient aba
+==============================================================================
+       a     b
+->  0  0, 1  0
+    1  -     2
+    2  3     -
+  * 3  3     3
+
+             a        b
+->  {0}      {0,1}    {0}
+    {0,1}    {0,1}    {0,2}
+    {0,2}    {0,1,3}  {0}
+  * {0,1,3}  {0,1,3}  {0,2,3}
+  * {0,2,3}  {0,1,3}  {0,3}
+  * {0,3}    {0,1,3}  {0,3}
+6 etats ; meme langage : True
+
+==============================================================================
+EXERCICE 2 - minimiser le resultat (Moore)
+==============================================================================
+  etape 0 : {{0,1,3} {0,2,3} {0,3}} | {{0} {0,1} {0,2}}
+  etape 1 : {{0,1,3} {0,2,3} {0,3}} | {{0} {0,1}} | {{0,2}}
+  etape 2 : {{0,1,3} {0,2,3} {0,3}} | {{0}} | {{0,1}} | {{0,2}}
+                           a                      b
+->  {0}                    {0,1}                  {0}
+    {0,1}                  {0,1}                  {0,2}
+    {0,2}                  {0,1,3}={0,2,3}={0,3}  {0}
+  * {0,1,3}={0,2,3}={0,3}  {0,1,3}={0,2,3}={0,3}  {0,1,3}={0,2,3}={0,3}
+4 etats ; meme langage : True
+
+==============================================================================
+EXERCICE 3 - a(a+b)*b : automate a la main, puis deterministe complet
+==============================================================================
+       a  b
+->  0  1  -
+    1  1  1, 2
+  * 2  -  -
+
+           a    b
+->  {0}    {1}  ∅
+    {1}    {1}  {1,2}
+    ∅      ∅    ∅
+  * {1,2}  {1}  {1,2}
+compare au module re sur les 2047 mots de 0 a 10 lettres : 0 ecart
+
+==============================================================================
+EXERCICE 4 - le complementaire de a(a+b)*b (le piege)
+==============================================================================
+inverser les finaux de l'automate non deterministe :
+   382 mots mal classes sur 511 (0 a 8 lettres), par exemple 'b', 'ab', 'ba', 'bb'
+inverser les finaux du deterministe SANS puits :
+   255 mots mal classes sur 511 (0 a 8 lettres), par exemple 'b', 'ba', 'bb', 'baa'
+determiniser, completer, puis inverser :
+   0 mots mal classes sur 511 (0 a 8 lettres)
+'b' : dans le langage False | naif non det. False | naif sans puits False | correct True
+'ab' : dans le langage True | naif non det. True | naif sans puits False | correct False
+           a    b
+->* {0}    {1}  ∅
+  * {1}    {1}  {1,2}
+  * ∅      ∅    ∅
+    {1,2}  {1}  {1,2}

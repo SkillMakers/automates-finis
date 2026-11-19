@@ -1,6 +1,6 @@
 # Automates finis : déterminiser et minimiser, exercices corrigés
 
-Code de la vidéo **Automates finis : déterminiser et minimiser, exercices corrigés** de la chaîne
+Code de la vidéo [**Automates finis : déterminiser et minimiser, exercices corrigés**](https://youtu.be/DWeajOx1au4) de la chaîne
 [IT Skills Maker](https://www.youtube.com/@ItSkillsMaker).
 
 Le programme refait le corrigé **comme sur une copie** : table de transitions, déterminisation par la méthode des
